@@ -113,7 +113,7 @@ function Cart() {
   const handleToken = async (token) => {
     console.log(token);
     const cart = { name: 'All Products', totalPrice }
-    const response = await axios.post('http://localhost:8081/checkout', {
+    const response = await axios.post('https://zingy-toffee-20ab2c.netlify.app/checkout', {
       token,
       cart
     })
