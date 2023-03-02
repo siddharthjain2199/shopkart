@@ -3,7 +3,7 @@ import React from 'react'
 export const Profile = () => {
   return (
   <>
-    <div className="container rounded bg-white mt-5 mb-5">
+    {/* <div className="container rounded bg-white mt-5 mb-5">
     <div className="row">
         <div className="col-md-3 border-right">
             <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" width="150px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="image"/><span className="font-weight-bold">Edogaru</span><span className="text-black-50">edogaru@mail.com.my</span><span> </span></div>
@@ -42,7 +42,7 @@ export const Profile = () => {
             </div>
         </div>
     </div>
-    </div>
+    </div> */}
   </>
   )
 }
