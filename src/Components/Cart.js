@@ -121,7 +121,7 @@ function Cart() {
     let { status } = response.data;
     // console.log(status)
     if (status === 'success') {
-        navigate('/');
+        navigate('/myorders');
        toast.success('Your order has been placed successfully', {
         position: 'top-right',
         autoClose: 10000,

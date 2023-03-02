@@ -22,7 +22,7 @@ export const Modal = ({TotalPrice,totalQty,hideModal}) => {
      // cash on delivery
      const handleCashOnDelivery=async(e)=>{
         e.preventDefault();
-        console.log(cell, residentialAddress, cartPrice, cartQty);
+        // console.log(cell, residentialAddress, cartPrice, cartQty);
         const uid = auth.currentUser.uid;
         const userData = await fs.collection('users').doc(uid).get();
         await fs.collection('Buyer-Personal-Info').add({
@@ -41,7 +41,7 @@ export const Modal = ({TotalPrice,totalQty,hideModal}) => {
             await fs.collection('Cart ' + uid).doc(snap.id).delete();
         }
         hideModal();
-        navigate('/');
+        navigate('/myorders');
         toast.success('Your order has been placed successfully', {
             position: 'top-right',
             autoClose: 5000,

@@ -43,24 +43,42 @@ function Navbar({ user }) {
                                 <Link className="nav-link" aria-current="page" to="/">Home</Link>
                             </li>
                         </ul>
-                        {!user && <form className="form-inline my-2 my-lg-0 text-light">
-                            <Link className="btn btn-primary mx-2" to="/signup">Signup</Link>
-                            <Link className="btn btn-primary" to="/login">Login</Link>
-                        </form>}
-                        {user && <form className="form-inline my-2 my-lg-0 text-light">
-                            <Link className="btn btn-primary" to="/profile">{user}</Link>
+                        {!user && // <form className="form-inline my-2 my-lg-0 text-light">
+                            <ul className="navbar-nav mb-2 mb-lg-0 navbar-right">
 
-                            <Link className="btn btn-primary mx-2" to="/cart">
-                                <Icon icon={shoppingCart} size={20}></Icon>
-                                <span className='badge rounded-pill bg-danger'>{totalProducts}</span>
-                            </Link>
-
-                            <Link className="btn btn-primary" to="/login" onClick={handleLogout}>Logout</Link>
-                        </form>}
-                    </div>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/signup">Signup</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/login">Login</Link>
+                                </li>
+                            </ul>
+                            // </form>
+                        }
+                        {user && // <form className="form-inline my-2 my-lg-0 text-light">
+                        <ul className="navbar-nav mb-2 mb-lg-0 navbar-right">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/profile">{user}</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/cart">
+                                    <Icon icon={shoppingCart} size={20}></Icon>
+                                    <span className='badge rounded-pill bg-danger'>{totalProducts}</span>
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/myorders">Orders</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/login" onClick={handleLogout}>Logout</Link>
+                            </li>
+                            </ul>
+                            // </form>
+                        }
                 </div>
-            </nav>
         </div>
+            </nav >
+        </div >
     )
 }
 

@@ -13,6 +13,8 @@ import Signup from './Components/Signup';
 import Cart from './Components/Cart';
 import AddProduct from './Components/AddProduct';
 import NotFound from './Components/NotFound';
+import { Profile } from './Components/Profile';
+import { MyOrders } from './Components/MyOrders';
 
 const App = () => {
     // getting current user function
@@ -35,17 +37,21 @@ const App = () => {
     const user = GetCurrentUser();
     
   return (
+    <div className="container">
     <Router>
      <Navbar user={user}/>
         <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
+        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/myorders" element={<MyOrders />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/add-product" element={<AddProduct />} />
         <Route path="*" element={<NotFound />} />
         </Routes>
   </Router>
+  </div>
   );
 }
 
