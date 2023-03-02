@@ -4,13 +4,13 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAQUppjEHV7oCcpPlDcmrmWUCBBo-0A-0I",
-    authDomain: "shopkart-b20c3.firebaseapp.com",
-    projectId: "shopkart-b20c3",
-    storageBucket: "shopkart-b20c3.appspot.com",
-    messagingSenderId: "860930537296",
-    appId: "1:860930537296:web:3edb02724e1f43e39c1e55",
-    measurementId: "G-0PP67FKMBV"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId,
+    measurementId:process.env.REACT_APP_measurementId,
   };
 
   firebase.initializeApp(firebaseConfig);
