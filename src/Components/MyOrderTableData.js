@@ -7,8 +7,8 @@ export const MyOrderTableData = ({myOrderProduct}) => {
             <th>{myOrderProduct.ID}</th>
             <td>
                 <div className='d-flex'>
-                    <div className="card" style={{ width: "6em", height: "6em" }}>
-                        <img src={myOrderProduct.url} className="card-img-top" alt="..." />
+                    <div className="card">
+                        <img src={myOrderProduct.url} className="card-img-top" alt="..." style={{ width: "6em", height: "6em" }}/>
                     </div>
                     <div className="card-body mx-2 w-50">
                         <h5 className="card-title">{myOrderProduct.productName}</h5>
