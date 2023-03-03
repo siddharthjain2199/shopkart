@@ -1,7 +1,10 @@
+import env from "react-dotenv";
 const express = require('express');
 const cors = require('cors');
 const {v4: uuidv4} = require('uuid');
-const stripe = require('stripe')('sk_test_51MfjBRSHjRD39R5tbV9O7VlXSFcUN0FYVWW0tdpxGeiexR8OpJShbopycfLXY3DTvbzZhXin8C4T5YA6hcaQrhku00XhTpY5HY');
+const stripe = require('stripe')
+
+(env.skKey);
 
 const app = express();
 app.use(cors());

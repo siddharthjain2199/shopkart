@@ -107,13 +107,13 @@ function Cart() {
 
   const totalPrice = price.reduce(reducerOfPrice, 0);
 
-  const apiKey = 'pk_test_51MfjBRSHjRD39R5tfcZZvkowS1tFkiyk4deI3D5wWeoz6oWgufK1PrWPmlael1y3TJjNF2MOGt1fN0fyXQvGm9Y900uQWnnJOU';
+  const pkKey = process.env.REACT_APP_pkKey
 
   const navigate = useNavigate();
   const handleToken = async (token) => {
     console.log(token);
     const cart = { name: 'All Products', totalPrice }
-    const response = await axios.post('https://zingy-toffee-20ab2c.netlify.app/checkout', {
+    const response = await axios.post(process.env.checkoutURL, {
       token,
       cart
     })
@@ -161,7 +161,7 @@ function Cart() {
             </div>
             <br></br>
             <StripeCheckout
-                          stripeKey = {apiKey}
+                          stripeKey = {pkKey}
                           token = {handleToken}
                           billingAddress
                           shippingAddress
