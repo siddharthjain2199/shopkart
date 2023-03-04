@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react' //useState also 
-import { auth, fs } from '../Config/Config'
+import { auth, fs } from '../../Config/Config'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Signup() {
@@ -48,7 +48,7 @@ function Signup() {
         e.preventDefault();
         //   console.log(uname,email,password);
         auth.createUserWithEmailAndPassword(state.email, state.password).then((credentials) => {
-            console.log(credentials);
+            // console.log(credentials);
             fs.collection('users').doc(credentials.user.uid).set({
                 UserName: state.uname,
                 Email: state.email,

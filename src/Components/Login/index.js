@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { auth } from '../Config/Config'
+import { auth } from '../../Config/Config'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Login() {

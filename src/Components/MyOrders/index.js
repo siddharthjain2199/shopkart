@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { auth, fs } from '../Config/Config';
+import { auth, fs } from '../../Config/Config';
 import { MyOrderTable } from './MyOrderTable';
 
 export const MyOrders = () => {

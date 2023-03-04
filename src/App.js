@@ -7,12 +7,12 @@ import {
 import './App.css';
 import { auth, fs } from './Config/Config'
 import Home from './Components/Home';
-import Navbar from './Components/Navbar';
+import Navbar from './Components/Common/Navbar';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Cart from './Components/Cart';
 import AddProduct from './Components/AddProduct';
-import NotFound from './Components/NotFound';
+import NotFound from './Components/Common/PageNotFound';
 import { Profile } from './Components/Profile';
 import { MyOrders } from './Components/MyOrders';
 

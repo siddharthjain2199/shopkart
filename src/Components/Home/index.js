@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { auth, fs } from '../Config/Config';
-import Products from './Products'
+import { auth, fs } from '../../Config/Config';
+import Products from '../Products'
 
 const Home = (props) => {
 
