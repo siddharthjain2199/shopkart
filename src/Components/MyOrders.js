@@ -9,7 +9,7 @@ export const MyOrders = () => {
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             if (user) {
-                fs.collection('Buyer-Cart ' + user.uid).onSnapshot((snapshot) => {
+                fs.collection('Orders ' + user.uid).onSnapshot((snapshot) => {
                     const newOrderProducts = snapshot.docs.map((doc) => ({
                         ID: doc.id,
                         ...doc.data(),
@@ -22,7 +22,8 @@ export const MyOrders = () => {
         })
     }, [])
 
-    console.log(myOrderProducts)
+    myOrderProducts.sort((a, b) => a.OrderDate.split('/').reverse().join().localeCompare(b.OrderDate.split('/').reverse().join()))
+
     return (
         <>
             {myOrderProducts.length > 0 &&
@@ -33,9 +34,11 @@ export const MyOrders = () => {
                             <tr>
                                 <th className="col-1">Order Id</th>
                                 <th className="col-3">Product</th>
-                                <th className="col">Date</th>
                                 <th className="col-2">Quantity</th>
+                                <th className="col">Date</th>
+                                <th className="col-2">Payment Mode</th>
                                 <th className="col-2">Total Amount</th>
+
                             </tr>
                         </thead>
                         <tbody>

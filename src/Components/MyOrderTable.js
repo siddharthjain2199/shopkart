@@ -3,6 +3,6 @@ import { MyOrderTableData } from './MyOrderTableData'
 
 export const MyOrderTable = ({myOrderProducts}) => {
   return myOrderProducts.map((myOrderProduct)=>(
-    <MyOrderTableData key={myOrderProduct.ID} myOrderProduct={myOrderProduct} />
+    <MyOrderTableData key={myOrderProduct.ID} myOrderProduct={myOrderProduct}/>
   ))
 }
