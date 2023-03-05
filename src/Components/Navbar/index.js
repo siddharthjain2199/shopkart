@@ -3,6 +3,8 @@ import Icon from 'react-icons-kit'
 import { Link, useNavigate } from 'react-router-dom'
 import { shoppingCart } from 'react-icons-kit/feather/shoppingCart'
 import { auth, fs } from '../../../Config/Config'
+import { isEmpty } from 'lodash'
+
 function Navbar({ user }) {
     const navigate = useNavigate();
     const handleLogout = () => {
@@ -17,7 +19,7 @@ function Navbar({ user }) {
     //getting cart Products
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-            if (user) {
+            if (!(isEmpty(user))) {
                 fs.collection('Cart ' + user.uid).onSnapshot((snapshot) => {
                     const qty = snapshot.docs.length;
                     setTotalProducts(qty);
