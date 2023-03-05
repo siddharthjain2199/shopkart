@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { auth, fs } from '../../Config/Config';
+import { Auth } from '../Common/Auth';
 import { MyOrderTable } from './MyOrderTable';
 
 export const MyOrders = () => {
+    <Auth/>
     const [myOrderProducts, setMyOrderProducts] = useState([]);
 
     // getting orders from firestore collection and updating the state

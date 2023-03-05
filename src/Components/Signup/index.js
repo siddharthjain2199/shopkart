@@ -1,49 +1,31 @@
 import React, { useReducer } from 'react' //useState also 
 import { auth, fs } from '../../Config/Config'
 import { Link, useNavigate } from 'react-router-dom'
+import { Auth } from '../Common/Auth';
 
 function Signup() {
 
     const navigate = useNavigate();
-
-    function reducer(state, action) {
-        if (action.type === 'setUname') {
-            return {
-                uname: state.uname
-            };
-        }
-        if (action.type === 'setEmail') {
-            return {
-                email: state.email
-            };
-        }
-        if (action.type === 'setPassword') {
-            return {
-                password: state.password
-            };
-        }
-        if (action.type === 'setErrorMsg') {
-            return {
-                errorMsg: state.errorMsg
-            };
-        }
-        if (action.type === 'setSuccessMsg') {
-            return {
-                successMsg: state.successMsg
-            };
-        }
-        throw Error('Unknown action.');
-    }
-
-    // const [uname, setUname] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-
-    // const [errorMsg, setErrorMsg] = useState('');
-    // const [successMsg, setSuccessMsg] = useState('');
+    <Auth/>
 
     const [state, dispatch] = useReducer(reducer, { uname: '', email: '', password: '', errorMsg: '', successMsg: '' })
 
+    function reducer(state, action) {
+        switch (action.type) {
+            case 'setUname':
+                return { ...state, uname: action.value };
+            case 'setEmail':
+                return { ...state, email: action.value };
+            case 'setPassword':
+                return { ...state, password: action.value };
+            case 'setErrorMsg':
+                return { ...state, errorMsg: action.value };
+            case 'setSuccessMsg':
+                return { ...state, successMsg: action.value };
+            default:
+                return state;
+        }
+    }
     const handleSignup = (e) => {
         e.preventDefault();
         //   console.log(uname,email,password);
@@ -54,52 +36,48 @@ function Signup() {
                 Email: state.email,
                 Password: state.password
             }).then(() => {
-                // setSuccessMsg('Signup succesful. You will now automatically get redirected to Login');
-                // setUname('');
-                // setEmail('');
-                // setPassword('');
-                // setErrorMsg('');
-
                 dispatch({
                     type: 'setSuccessMsg',
-                    nextName: 'Signup succesful. You will now automatically get redirected to Login'
+                    value: 'Signup succesful. You will now automatically get redirected to Home'
                 })
                 dispatch({
                     type: 'setErrorMsg',
-                    nextName: ''
+                    value: ''
                 })
                 dispatch({
                     type: 'setUname',
-                    nextName: ''
+                    value: ''
                 })
                 dispatch({
                     type: 'setEmail',
-                    nextName: ''
+                    value: ''
                 })
                 dispatch({
                     type: 'setPassword',
-                    nextName: ''
+                    value: ''
                 })
                 setTimeout(() => {
                     // setSuccessMsg('');
                     dispatch({
                         type: 'setSuccessMsg',
-                        nextName: ''
+                        value: ''
                     })
-                    navigate('/login');
-                }, 3000)
+                    console.log(state.email, state.password, state.successMsg)
+                    navigate('/');
+                }, 600)
+
             }).catch((error) => {
                 // setErrorMsg(error.message)
                 dispatch({
                     type: 'setErrorMsg',
-                    nextName: error.message
+                    value: error.message
                 })
             })
         }).catch((error) => {
             // setErrorMsg(error.message)
             dispatch({
                 type: 'setErrorMsg',
-                nextName: error.message
+                value: error.message
             })
         })
     }
@@ -111,13 +89,13 @@ function Signup() {
                 </div>
                 <br></br>
             </>}
+            {state.successMsg && <>
+                <div className='alert alert-success alert-dismissible fade show'>{state.successMsg}
+                </div>
+                <br></br>
+            </>}
             <div className="container">
                 <div className="mt-5">
-                    {state.successMsg && <>
-                        <div className='alert alert-success alert-dismissible fade show'>{state.successMsg}
-                        </div>
-                        <br></br>
-                    </>}
                     <h1>Signup</h1>
                     <form onSubmit={handleSignup}>
                         <div className="mb-3">
@@ -127,7 +105,7 @@ function Signup() {
                                     (e) => // setUname(e.target.value)
                                         dispatch({
                                             type: 'setUname',
-                                            nextName: e.target.value
+                                            value: e.target.value
                                         })
                                 } value={state.uname} />
                         </div>
@@ -137,9 +115,9 @@ function Signup() {
                                 onChange={(e) => // setEmail(e.target.value)
                                     dispatch({
                                         type: 'setEmail',
-                                        nextName: e.target.value
+                                        value: e.target.value
                                     })
-                                } value={state.email} />
+                                } />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="password" className="form-label">Password</label>
@@ -147,9 +125,9 @@ function Signup() {
                                 onChange={(e) => // setPassword(e.target.value)
                                     dispatch({
                                         type: 'setPassword',
-                                        nextName: e.target.value
+                                        value: e.target.value
                                     })
-                                } value={state.password} />
+                                } />
                         </div>
                         <div className="mb-3">
                             <span>Already have an account Login
