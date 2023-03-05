@@ -62,7 +62,7 @@ function Signup() {
                         type: 'setSuccessMsg',
                         value: ''
                     })
-                    console.log(state.email, state.password, state.successMsg)
+                    // console.log(state.email, state.password, state.successMsg)
                     navigate('/');
                 }, 600)
 
@@ -75,7 +75,7 @@ function Signup() {
                     type: 'setErrorMsg',
                     value: errorString
                 })
-                console.log(errorString)
+                // console.log(errorString)
             })
         }).catch((error) => {
             // setErrorMsg(error.message)
