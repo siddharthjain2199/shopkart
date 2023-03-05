@@ -137,7 +137,7 @@ function Signup() {
                                 } />
                         </div>
                         <div className="mb-3">
-                            <span>Already have an account Login
+                            <span>Already have an account Login&nbsp;
                                 <Link to='/login'>Here</Link></span>
                         </div>
                         <div className="mb-3">
