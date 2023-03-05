@@ -66,9 +66,13 @@ function Login() {
             }, 600) // to add delay 3000
         }).catch((error) => {
             // setErrorMsg(error.message)
+            let errorString = error.message;
+            errorString = errorString.replace("Firebase: ", "");
+            errorString = errorString.replace(/ \(auth\/.*?\)\./, "");
+
             dispatch({
                 type: 'setErrorMsg',
-                value: error.message
+                value: errorString
             })
         })
     }

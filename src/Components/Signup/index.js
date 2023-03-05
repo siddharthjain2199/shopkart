@@ -68,16 +68,23 @@ function Signup() {
 
             }).catch((error) => {
                 // setErrorMsg(error.message)
+                let errorString = error.message;
+                errorString = errorString.replace("Firebase: ", "");
+                errorString = errorString.replace(/ \(auth\/.*?\)\./, "");
                 dispatch({
                     type: 'setErrorMsg',
-                    value: error.message
+                    value: errorString
                 })
+                console.log(errorString)
             })
         }).catch((error) => {
             // setErrorMsg(error.message)
+            let errorString = error.message;
+                errorString = errorString.replace("Firebase: ", "");
+                errorString = errorString.replace(/ \(auth\/.*?\)\./, "");
             dispatch({
                 type: 'setErrorMsg',
-                value: error.message
+                value: errorString
             })
         })
     }

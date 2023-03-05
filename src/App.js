@@ -11,7 +11,7 @@ import Navbar from './Components/Common/Navbar';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Cart from './Components/Cart';
-import AddProduct from './Components/AddProduct';
+import AddProduct from './Components/Admin/AddProduct';
 import NotFound from './Components/Common/PageNotFound';
 import { Profile } from './Components/Profile';
 import { MyOrders } from './Components/MyOrders';

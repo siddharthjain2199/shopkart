@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { fs, storage } from '../../Config/Config';
+import { fs, storage } from '../../../Config/Config';
 
 const AddProduct = () => {
     const [productName, setProductName] = useState('');
