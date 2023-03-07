@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
-import { auth } from '../../Config/Config'
 import { Link, useNavigate } from 'react-router-dom'
+import { signInWithEmailAndPassword } from '../../Libs/firebaseutils';
 import { Auth } from '../Common/Auth';
 
 function Login() {
@@ -31,50 +31,10 @@ function Login() {
     }
     // console.log(state.email,state.password)
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        // console.log(state.email,state.password)
-        auth.signInWithEmailAndPassword(state.email, state.password).then(() => {
-            // setSuccessMsg('Login succesful. You will now automatically get redirected to Home')
-            // setEmail('');
-            // setPassword('');
-            // setErrorMsg('');
-            dispatch({
-                type: 'setSuccessMsg',
-                value: 'Login succesful. You will now automatically get redirected to Home'
-            })
-
-            setTimeout(() => {
-                // setSuccessMsg('');
-                dispatch({
-                    type: 'setErrorMsg',
-                    value: ''
-                })
-                dispatch({
-                    type: 'setEmail',
-                    value: ''
-                })
-                dispatch({
-                    type: 'setPassword',
-                    value: ''
-                })
-                dispatch({
-                    type: 'setSuccessMsg',
-                    value: ''
-                })
-                navigate('/');
-            }, 600) // to add delay 3000
-        }).catch((error) => {
-            // setErrorMsg(error.message)
-            let errorString = error.message;
-            errorString = errorString.replace("Firebase: ", "");
-            errorString = errorString.replace(/ \(auth\/.*?\)\./, "");
-
-            dispatch({
-                type: 'setErrorMsg',
-                value: errorString
-            })
-        })
+        // console.log(state.email,state.password) 
+         await signInWithEmailAndPassword(state.email,state.password,dispatch,navigate)
     }
     return (
         <>
