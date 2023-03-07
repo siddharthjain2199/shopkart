@@ -1,8 +1,6 @@
 import React from 'react'
-import { Auth } from '../Common/Auth'
 
 export const Profile = () => {
-    <Auth/>
   return (
   <>
     {/* <div className="container rounded bg-white mt-5 mb-5">

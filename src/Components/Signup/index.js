@@ -1,12 +1,10 @@
 import React, { useReducer } from 'react' //useState also 
 import { Link, useNavigate } from 'react-router-dom'
-import { Auth } from '../Common/Auth';
 import { signUpWithEmailAndPassword } from '../../Libs/firebaseutils';
 
 function Signup() {
 
     const navigate = useNavigate();
-    <Auth/>
 
     const [state, dispatch] = useReducer(reducer, { uname: '', email: '', password: '', errorMsg: '', successMsg: '' })
 
