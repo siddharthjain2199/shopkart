@@ -7,11 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Modal } from './Modal';
-import { Auth } from '../Common/Auth';
 
 toast.configure();
 function Cart() {
-  <Auth/>
   // show modal state
   const [showModal, setShowModal] = useState(false);
 
@@ -40,9 +38,10 @@ function Cart() {
         })
       } else {
         console.log('User is not signed in to retrieve cart')
+        navigate('/login')
       }
     })
-  }, [])
+  }, )
 
   // console.log(cartProducts)
   // Global Variable
@@ -62,6 +61,7 @@ function Cart() {
         })
       } else {
         console.log("User has not logged in to increment")
+        navigate('/login')
       }
     })
   }
@@ -81,6 +81,7 @@ function Cart() {
           })
         } else {
           console.log("User has not logged in to decrement")
+        navigate('/login')
         }
       })
     } else {
