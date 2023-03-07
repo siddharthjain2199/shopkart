@@ -4,13 +4,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { shoppingCart } from 'react-icons-kit/feather/shoppingCart'
 import { auth, fs } from '../../../Config/Config'
 import { isEmpty } from 'lodash'
+import { signOutWithEmailAndPassword } from '../../libs/FirebaseUtils'
 
 function Navbar({ user }) {
     const navigate = useNavigate();
-    const handleLogout = () => {
-        auth.signOut().then(() => {
-            navigate('/login')
-        })
+    const handleLogout = async () => {
+       await signOutWithEmailAndPassword(navigate);
     }
 
     // state of total products

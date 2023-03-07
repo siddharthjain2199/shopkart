@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { isEmpty } from 'lodash'
 
 export const Auth = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return auth.onAuthStateChanged((user) => {
     if (!(isEmpty(user))) {
-        navigate('/')
+      navigate('/')
     }
-})
+  })
 }
