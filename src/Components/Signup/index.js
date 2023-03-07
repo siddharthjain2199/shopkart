@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react' //useState also 
-import { auth, fs } from '../../Config/Config'
 import { Link, useNavigate } from 'react-router-dom'
 import { Auth } from '../Common/Auth';
+import { signUpWithEmailAndPassword } from '../../Libs/firebaseutils';
 
 function Signup() {
 
@@ -26,67 +26,10 @@ function Signup() {
                 return state;
         }
     }
-    const handleSignup = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
         //   console.log(uname,email,password);
-        auth.createUserWithEmailAndPassword(state.email, state.password).then((credentials) => {
-            // console.log(credentials);
-            fs.collection('users').doc(credentials.user.uid).set({
-                UserName: state.uname,
-                Email: state.email,
-                Password: state.password
-            }).then(() => {
-                dispatch({
-                    type: 'setSuccessMsg',
-                    value: 'Signup succesful. You will now automatically get redirected to Home'
-                })
-                dispatch({
-                    type: 'setErrorMsg',
-                    value: ''
-                })
-                dispatch({
-                    type: 'setUname',
-                    value: ''
-                })
-                dispatch({
-                    type: 'setEmail',
-                    value: ''
-                })
-                dispatch({
-                    type: 'setPassword',
-                    value: ''
-                })
-                setTimeout(() => {
-                    // setSuccessMsg('');
-                    dispatch({
-                        type: 'setSuccessMsg',
-                        value: ''
-                    })
-                    // console.log(state.email, state.password, state.successMsg)
-                    navigate('/');
-                }, 600)
-
-            }).catch((error) => {
-                // setErrorMsg(error.message)
-                let errorString = error.message;
-                errorString = errorString.replace("Firebase: ", "");
-                errorString = errorString.replace(/ \(auth\/.*?\)\./, "");
-                dispatch({
-                    type: 'setErrorMsg',
-                    value: errorString
-                })
-                // console.log(errorString)
-            })
-        }).catch((error) => {
-            // setErrorMsg(error.message)
-            let errorString = error.message;
-                errorString = errorString.replace("Firebase: ", "");
-                errorString = errorString.replace(/ \(auth\/.*?\)\./, "");
-            dispatch({
-                type: 'setErrorMsg',
-                value: errorString
-            })
-        })
+        await signUpWithEmailAndPassword(state.uname,state.email,state.password,dispatch,navigate)
     }
     return (
         <>
