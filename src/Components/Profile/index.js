@@ -3,6 +3,7 @@ import React from 'react'
 export const Profile = () => {
   return (
   <>
+    <div>Profile Page</div>
     {/* <div className="container rounded bg-white mt-5 mb-5">
     <div className="row">
         <div className="col-md-3 border-right">

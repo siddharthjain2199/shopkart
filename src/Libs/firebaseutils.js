@@ -103,4 +103,5 @@ export const signOutWithEmailAndPassword = async (navigate) => {
     await auth.signOut().then(() => {
         navigate('/login');
     })
-}
+};
+
