@@ -1,5 +1,6 @@
-import React, { useReducer } from 'react'
+import React, { useContext, useReducer } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../Context/Auth';
 import { signInWithEmailAndPassword } from '../../Libs/firebaseutils';
 
 function Login() {
@@ -28,10 +29,19 @@ function Login() {
     }
     // console.log(state.email,state.password)
 
-    const handleLogin = async (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
         // console.log(state.email,state.password) 
-         await signInWithEmailAndPassword(state.email,state.password,dispatch,navigate)
+        try {
+            signInWithEmailAndPassword(state.email, state.password, dispatch, navigate)
+        } catch (error) {
+            alert(error);
+        }
+    }
+    const { currentUser } = useContext(AuthContext);
+    if (currentUser) {
+        // return <Redirect to="/" />;
+        navigate('/')
     }
     return (
         <>

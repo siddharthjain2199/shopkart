@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react' //useState also 
+import React, { useReducer, useState } from 'react' //useState also 
 import { Link, useNavigate } from 'react-router-dom'
 import { signUpWithEmailAndPassword } from '../../Libs/firebaseutils';
 
@@ -24,10 +24,20 @@ function Signup() {
                 return state;
         }
     }
-    const handleSignup = async (e) => {
+    const [currentUser, setCurrentUser] = useState(null);
+    const handleSignup = (e) => {
         e.preventDefault();
         //   console.log(uname,email,password);
-        await signUpWithEmailAndPassword(state.uname,state.email,state.password,dispatch,navigate)
+        try {
+            signUpWithEmailAndPassword(state.uname,state.email,state.password,dispatch,navigate)
+            setCurrentUser(true);
+        } catch (error) {
+            alert(error);
+        }
+    }
+    if (currentUser) {
+        // return <Redirect to="/dashboard" />;
+        navigate('/')
     }
     return (
         <>
