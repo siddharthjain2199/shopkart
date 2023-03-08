@@ -28,21 +28,23 @@ function Login() {
         // throw Error('Unknown action.');
     }
     // console.log(state.email,state.password)
+    const { currentUser } = useContext(AuthContext);
 
     const handleLogin = (e) => {
         e.preventDefault();
         // console.log(state.email,state.password) 
-        try {
-            signInWithEmailAndPassword(state.email, state.password, dispatch, navigate)
-        } catch (error) {
-            alert(error);
+        if (!currentUser) {
+            try {
+                signInWithEmailAndPassword(state.email, state.password, dispatch, navigate)
+            } catch (error) {
+                alert(error);
+            }
         }
     }
-    const { currentUser } = useContext(AuthContext);
     if (currentUser) {
-        // return <Redirect to="/" />;
         navigate('/')
     }
+
     return (
         <>
             <div className="container mt-5">

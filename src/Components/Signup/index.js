@@ -1,5 +1,6 @@
-import React, { useReducer, useState } from 'react' //useState also 
+import React, { useContext, useReducer } from 'react' //useState also 
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../Context/Auth';
 import { signUpWithEmailAndPassword } from '../../Libs/firebaseutils';
 
 function Signup() {
@@ -24,21 +25,22 @@ function Signup() {
                 return state;
         }
     }
-    const [currentUser, setCurrentUser] = useState(null);
-    const handleSignup = (e) => {
+    const { currentUser } = useContext(AuthContext);
+    const handleSignup = async (e) => {
         e.preventDefault();
         //   console.log(uname,email,password);
-        try {
-            signUpWithEmailAndPassword(state.uname,state.email,state.password,dispatch,navigate)
-            setCurrentUser(true);
-        } catch (error) {
-            alert(error);
+        if (!currentUser) {
+            try {
+                await signUpWithEmailAndPassword(state.uname, state.email, state.password, dispatch, navigate)
+            } catch (error) {
+                alert(error);
+            }
         }
     }
     if (currentUser) {
-        // return <Redirect to="/dashboard" />;
         navigate('/')
     }
+    // return <Redirect to="/dashboard" />;
     return (
         <>
             {state.errorMsg && <>
