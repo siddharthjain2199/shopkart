@@ -67,7 +67,7 @@ function Signup() {
                                             type: 'setUname',
                                             value: e.target.value
                                         })
-                                } value={state.uname} />
+                                } />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email address</label>

@@ -16,6 +16,7 @@ import NotFound from './Components/Common/PageNotFound';
 import { Profile } from './Components/Profile';
 import { MyOrders } from './Components/MyOrders';
 import { AuthProvider } from './Context/Auth';
+import AboutUs from './Components/AboutUs';
 
 const App = () => {
   // getting current user function
@@ -48,6 +49,7 @@ const App = () => {
             <Route exact path="/signup" element={<Signup />} />
             <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/myorders" element={<MyOrders />} />
+            <Route exact path="/about" element={<AboutUs />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/add-product" element={<AddProduct />} />
             <Route path="*" element={<NotFound />} />
