@@ -43,6 +43,9 @@ function Navbar({ user }) {
                             <li className="nav-item">
                                 <Link className="nav-link" aria-current="page" to="/">Home</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" aria-current="page" to="/about">About Us</Link>
+                            </li>
                         </ul>
                         {!user && // <form className="form-inline my-2 my-lg-0 text-light">
                             <ul className="navbar-nav mb-2 mb-lg-0 navbar-right">
