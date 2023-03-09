@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Icon from 'react-icons-kit'
 import { Link, useNavigate } from 'react-router-dom'
 import { shoppingCart } from 'react-icons-kit/feather/shoppingCart'
-import { auth, fs } from '../../../Config/Config'
+import { auth, fs } from '../../Config/Config';
 import { isEmpty } from 'lodash'
-import { signOutWithEmailAndPassword } from '../../libs/FirebaseUtils'
+import { signOutWithEmailAndPassword } from '../../Libs/firebaseutils';
 
 function Navbar({ user }) {
     const navigate = useNavigate();
