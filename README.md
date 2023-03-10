@@ -6,7 +6,7 @@ Welcome to Shopkart! This is a regular shopping website that sells a variety of 
 
 Here are some screenshots of the website:
 
-![Homepage](https://example.com/shopkart/homepage.png)
+![Homepage](https://i.ibb.co/chqyjG5/netlify-app.jpg)
 
 ![Product Page](https://example.com/shopkart/product-page.png)
 
