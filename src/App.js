@@ -16,7 +16,6 @@ import NotFound from './Components/Common/PageNotFound';
 import { Profile } from './Components/Profile';
 import { MyOrders } from './Components/MyOrders';
 import AboutUs from './Components/AboutUs';
-import { AuthProvider } from './Context/Auth';
 import { Products } from './Components/Products';
 
 const App = () => {
@@ -41,7 +40,6 @@ const App = () => {
 
   return (
     <div className="container">
-      <AuthProvider>
         <Router>
           <Navbar user={user} />
           <Routes>
@@ -58,7 +56,6 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
-      </AuthProvider>
     </div>
   );
 }
