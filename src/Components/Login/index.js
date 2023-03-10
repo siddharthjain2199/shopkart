@@ -1,6 +1,5 @@
-import React, { useContext, useReducer } from 'react'
+import React, { useReducer } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../Context/Auth';
 import { signInWithEmailAndPassword } from '../../Libs/firebaseutils';
 
 function Login() {
@@ -28,21 +27,15 @@ function Login() {
         // throw Error('Unknown action.');
     }
     // console.log(state.email,state.password)
-    const { currentUser } = useContext(AuthContext);
 
     const handleLogin = (e) => {
         e.preventDefault();
         // console.log(state.email,state.password) 
-        if (!currentUser) {
             try {
                 signInWithEmailAndPassword(state.email, state.password, dispatch, navigate)
             } catch (error) {
                 alert(error);
-            }
         }
-    }
-    if (currentUser) {
-        navigate('/')
     }
 
     return (
