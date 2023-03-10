@@ -5,12 +5,10 @@ Welcome to Shopkart! This is a regular shopping website that sells a variety of 
 ## Screenshots
 
 Here are some screenshots of the website:
-
-![Homepage](https://i.ibb.co/chqyjG5/netlify-app.jpg){ width=50% }
-
-![Product Page](https://example.com/shopkart/product-page.png)
-
-![Cart Page](https://example.com/shopkart/cart-page.png)
+| Home | Product | Cart |
+| -------- | :------: | -------- |
+| ![Homepage](https://i.ibb.co/chqyjG5/netlify-app.jpg){ width=50% } | ![Product Page](https://example.com/shopkart/product-page.png) | Row 1, Column 3 |
+| ![Cart Page](https://example.com/shopkart/cart-page.png) |
 
 ## Features
 
