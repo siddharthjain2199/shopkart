@@ -1,6 +1,6 @@
 # Shopkart
 
-Welcome to Shopkart! This is a regular shopping website that sells a variety of products.
+Welcome to [Shopkart](https://zingy-toffee-20ab2c.netlify.app/)! This is a regular shopping website that sells a variety of products.
 
 ## Screenshots
 
