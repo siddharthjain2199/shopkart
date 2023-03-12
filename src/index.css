@@ -73,3 +73,121 @@
     right: -15px;
     cursor: pointer;
   }
+
+  .custom-card {
+    width: 250px;
+    /* height: 375px; */
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .card-image {
+    height: 200px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+  }
+  
+  .card-text {
+    font-size: 13px;
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .price {
+    font-size: 16px;
+  }
+  
+  .add-to-cart-btn {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+  
+  
+  .custom-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+
+  /* filter */
+.filter-products-main-box{
+  width: 100%;
+  display: flex;  
+}
+
+@media(max-width: 540px){
+  .filter-products-main-box{
+    flex-direction: column;
+  }
+}
+
+.filter-products-main-box .my-products{
+  flex: 3.3;
+  /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+}
+
+@media(max-width: 540px){
+  .filter-products-main-box .my-products{
+    width: 100%;
+    margin-top: 30px; 
+  }
+}
+
+.filter-box{
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  flex: 0.7;
+  padding-left: 15px;
+  padding-top: 10px;
+}
+
+@media(max-width: 540px){
+  .filter-box{
+    width: 100%;
+    padding-left: 10px;
+    padding-top: 5px;
+  }
+}
+
+.filter-box h6{
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.filter-box span{
+  cursor: pointer;
+  margin: 15px 0px;
+  font-size: 14px;
+}
+
+.filter-box span.ElectronicDevices{
+  color: #e00a02;
+}
+
+.filter-box span.MobileAccessories{
+  color: #e00a02;
+}
+
+.filter-box span.TVAndHomeAppliances{
+  color: #e00a02;
+}
+
+.filter-box span.SportsAndOutdoors{
+  color: #e00a02;
+}
+
+.HealthAndBeauty,.HomeAndLifestyle,.MensFashion,.WatchesBagsAndJewellery,.Groceries{
+  color: #e00a02;
+}

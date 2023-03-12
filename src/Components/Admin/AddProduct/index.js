@@ -5,7 +5,7 @@ const AddProduct = () => {
     const [productName, setProductName] = useState('');
     const [productDetail, setProductDetail] = useState('');
     const [productPrice, setProductPrice] = useState('');
-
+    const [category, setCategory]=useState('');
     const [productImage, setProductImage] = useState(null);
 
     const [imageError, setImageError] = useState('')
@@ -42,12 +42,14 @@ const AddProduct = () => {
                     productName,
                     productDetail,
                     productPrice: Number(productPrice),
+                    category,
                     url
                 }).then(() => {
                     setSuccessMsg('Product added Successfully');
                     setProductName('');
                     setProductDetail('');
                     setProductPrice('');
+                    setCategory('');
                     document.getElementById('productimage').value = '';
                     setImageError('');
                     setUploadError('');
@@ -70,7 +72,7 @@ const AddProduct = () => {
             {uploadError && <div className='alert alert-danger alert-dismissible fade show'>
                 {uploadError}
             </div>}
-            <div className="container">
+            <div className="container col-6">
                 <br /><br />
                 <h1>Add Product</h1>
                 <form onSubmit={handleAddProduct}>
@@ -85,6 +87,23 @@ const AddProduct = () => {
                     <div className="mb-3">
                         <label htmlFor="productprice" className="form-label">Product Price</label>
                         <input type="text" className="form-control" id="productprice" placeholder="Product price" onChange={(e) => setProductPrice(e.target.value)} value={productPrice} />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="productprice" className="form-label">Product Category</label>
+                        <select className='form-control' required
+                            value={category} onChange={(e) => setCategory(e.target.value)}>
+                            <option value="">Select Product Category</option>
+                            <option>Electronic Devices</option>
+                            <option>Mobile Accessories</option>
+                            <option>TV & Home Appliances</option>
+                            <option>Sports & outdoors</option>
+                            <option>Health & Beauty</option>
+                            <option>Home & Lifestyle</option>
+                            <option>Men's Fashion</option>
+                            <option>Watches, bags & Jewellery</option>
+                            <option>Groceries</option>
+                            <option>Other</option>
+                        </select>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="productimage" className="form-label">Product Image</label>
