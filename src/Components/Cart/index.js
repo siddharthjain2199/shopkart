@@ -41,7 +41,7 @@ function Cart() {
         navigate('/login')
       }
     })
-  }, )
+  },)
 
   // console.log(cartProducts)
   // Global Variable
@@ -81,7 +81,7 @@ function Cart() {
           })
         } else {
           console.log("User has not logged in to decrement")
-        navigate('/login')
+          navigate('/login')
         }
       })
     } else {
@@ -112,35 +112,84 @@ function Cart() {
   const pkKey = process.env.REACT_APP_pkKey
 
   const navigate = useNavigate();
-  const handleToken = async (token) => {
-    console.log(token);
-    const cart = { name: 'All Products', totalPrice }
-    const response = await axios.post(process.env.checkoutURL, {
-      token,
-      cart
-    })
-    // console.log(response)
-    let { status } = response.data;
-    // console.log(status)
-    if (status === 'success') {
-        navigate('/myorders');
-       toast.success('Your order has been placed successfully', {
-        position: 'top-right',
-        autoClose: 10000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-      });
-      const uid = auth.currentUser.uid;
-      const carts = await fs.collection('Cart ' + uid).get();
-      for (var snap of carts.docs) {
-        fs.collection('Cart ' + uid).doc(snap.id).delete();
+  // const handleToken = async (token) => {
+  //   console.log(token);
+  //   const cart = { name: 'All Products', totalPrice }
+  //   const response = await axios.post(process.env.checkoutURL, {
+  //     token,
+  //     cart
+  //   })
+  //   // console.log(response)
+  //   let { status } = response.data;
+  //   // console.log(status)
+  //   if (status === 'success') {
+  //     navigate('/myorders');
+  //     toast.success('Your order has been placed successfully', {
+  //       position: 'top-right',
+  //       autoClose: 10000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: false,
+  //       draggable: false,
+  //       progress: undefined,
+  //     });
+  //     const uid = auth.currentUser.uid;
+  //     const carts = await fs.collection('Cart ' + uid).get();
+  //     for (var snap of carts.docs) {
+  //       fs.collection('Cart ' + uid).doc(snap.id).delete();
+  //     }
+  //   } else {
+  //     alert('Something went wrong in checkout');
+  //   }
+  // }
+
+  const loadScript = (src) => {
+    return new Promise((resolve)=>{
+      const script = document.createElement('script')
+      script.src = src
+      script.onload = () => {
+        resolve(true)
       }
-    } else {
-      alert('Something went wrong in checkout');
+      script.onerror = () =>{
+        resolve(false)
+      }
+
+      document.body.appendChild(script)
+    })
+  }
+
+  const displayRazorpay = async (amount) => {
+    // console.log(amount)
+    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+
+    if (!res){
+      alert('You are offline... Failed to load Razorpay SDK')
+      return      
     }
+
+    const options = {
+      key : "rzp_test_pLP6EgHAPFWMmt",
+      currency: "INR",
+      amount: amount * 100,
+      name: "ShopKart",
+      description: "Thanks for Purchasing",
+      image: 'https://zingy-toffee-20ab2c.netlify.app/logo.png',
+
+      handler: function(response){
+        alert(response.razorpay_payment_id)
+        alert("Payment Succesfully ")
+      },
+
+      // if(response.razorpay_payment_id){
+
+      // }
+
+      prefill: {
+        name: "Shopkart"
+      }
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
   }
   return (
     <div>
@@ -162,16 +211,17 @@ function Cart() {
               Total Price to Pay: <span>₹ {totalPrice}</span>
             </div>
             <br></br>
-            <StripeCheckout
+            {/* <StripeCheckout
                           stripeKey = {pkKey}
                           token = {handleToken}
                           billingAddress
                           shippingAddress
                           name='All Products'
                           amount={totalPrice * 100}
-                        ></StripeCheckout>
-                           <h6 className='text-center'
-                        style={{marginTop: 7+'px'}}>OR</h6>
+                        ></StripeCheckout> */}
+            <button onClick={() => displayRazorpay(totalPrice)}>Pay Online</button>
+            <h6 className='text-center'
+              style={{ marginTop: 7 + 'px' }}>OR</h6>
             <button className='btn btn-secondary btn-md'
               onClick={() => triggerModal()}>Cash on Delivery</button>
           </div>
