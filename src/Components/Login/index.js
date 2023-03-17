@@ -31,11 +31,11 @@ function Login() {
     const handleLogin = (e) => {
         e.preventDefault();
         // console.log(state.email,state.password) 
-            try {
+            // try {
                 signInWithEmailAndPassword(state.email, state.password, dispatch, navigate)
-            } catch (error) {
-                alert(error);
-        }
+            // } catch (error) {
+                // alert(error);
+        // }
     }
 
     return (
