@@ -18,6 +18,8 @@ import { MyOrders } from './Components/MyOrders';
 import AboutUs from './Components/AboutUs';
 import { Products } from './Components/Products';
 import { AuthProvider } from './Context/userContext';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './language/i18n';
 
 const App = () => {
   // getting current user function
@@ -40,6 +42,7 @@ const App = () => {
   const user = GetCurrentUser();
 
   return (
+        <I18nextProvider i18n={i18n}>
     <div className="container">
       <BrowserRouter>
         <AuthProvider>
@@ -49,7 +52,7 @@ const App = () => {
             <Route exact path="/about" element={<AboutUs />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />
-            <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/profile" element={<Profile user={user}/>} />
             <Route exact path="/myorders" element={<MyOrders />} />
             <Route exact path="/about" element={<AboutUs />} />
             <Route exact path="/products" element={<Products />} />
@@ -60,6 +63,7 @@ const App = () => {
         </AuthProvider>
       </BrowserRouter>
     </div>
+          </I18nextProvider>
   );
 }
 
