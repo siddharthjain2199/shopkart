@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import Icon from 'react-icons-kit'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { shoppingCart } from 'react-icons-kit/feather/shoppingCart'
 import { auth, fs } from '../../Config/Config';
 import { isEmpty } from 'lodash'
 import { signOutWithEmailAndPassword } from '../../Libs/firebaseutils';
 
+import { userReducer, initialState } from '../../data/reducers/userReducer';
+// import { auth } from '../../Config/Config'; // import Firebase authentication instance
+
+
 function Navbar({ user }) {
-    const navigate = useNavigate();
-    const handleLogout = async () => {
-       await signOutWithEmailAndPassword(navigate);
-    }
+    // const navigate = useNavigate();
+    // const handleLogout = async () => {
+    //    await signOutWithEmailAndPassword(navigate);
+    // }
+
+    const [state, dispatch] = useReducer(userReducer, initialState);
+
+    const handleLogout = async() => {
+        await signOutWithEmailAndPassword(dispatch);
+    };
 
     // state of total products
     const [totalProducts, setTotalProducts] = useState(0);

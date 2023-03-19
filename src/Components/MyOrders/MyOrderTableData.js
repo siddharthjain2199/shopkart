@@ -3,11 +3,11 @@ import React from 'react'
 export const MyOrderTableData = ({ myOrderProduct }) => {
     return (
         <tr>
-            <th>{myOrderProduct.OrderID}</th>
-            {myOrderProduct.AfterCartSave.map((reptile) => (
-                <td className='row'>
+            <td>{myOrderProduct.OrderID}</td>
+            {myOrderProduct.AfterCartSave.map((reptile,i) => (
+                <td key={i} className='row'>
                     <div className='d-flex'>
-                        <div className="card">
+                        <div className="">
                             <img src={reptile.url} className="card-img-top" alt="..." style={{ width: "6em", height: "8em" }} />
                         </div>
                         <div className="card-body mx-2 w-50">

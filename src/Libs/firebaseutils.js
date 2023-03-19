@@ -1,107 +1,51 @@
 import { auth, fs } from '../Config/Config';
+import userTypes from '../data/types/userTypes';
 
-export const signUpWithEmailAndPassword = async (uname, email, password, dispatch, navigate) => {
-    await auth.createUserWithEmailAndPassword(email, password).then((credentials) => {
-        fs.collection('users').doc(credentials.user.uid).set({
-            UserName: uname,
+export const signUpWithEmailAndPassword = async (name, email, password, dispatch) => {
+    const setUserDetails = (user) => {
+        const { displayName, email } = user;
+        dispatch({ type: userTypes.SET_USER_DETAILS, payload: { name: displayName, email } });
+    };
+   await auth.createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+        fs.collection('users').doc(userCredential.user.uid).set({
+            UserName: name,
             Email: email,
             Password: password
-        }).then(() => {
-            dispatch({
-                type: 'setSuccessMsg',
-                value: 'Signup succesful. You will now automatically get redirected to Home'
-            })
-            dispatch({
-                type: 'setErrorMsg',
-                value: ''
-            })
-            dispatch({
-                type: 'setUname',
-                value: ''
-            })
-            dispatch({
-                type: 'setEmail',
-                value: ''
-            })
-            dispatch({
-                type: 'setPassword',
-                value: ''
-            })
-            setTimeout(() => {
-                // setSuccessMsg('');
-                dispatch({
-                    type: 'setSuccessMsg',
-                    value: ''
-                })
-                // console.log(state.email, state.password, state.successMsg)
-                navigate('/');
-            }, 600)
-        }).catch((error) => {
-            // setErrorMsg(error.message)
-            let errorString = error.message;
-            errorString = errorString.replace("Firebase: ", "");
-            errorString = errorString.replace(/ \(auth\/.*?\)\./, "");
-
-            dispatch({
-                type: 'setErrorMsg',
-                value: errorString
-            })
         })
-    }).catch((error) => {
-        // setErrorMsg(error.message)
+        dispatch({ type: userTypes.REGISTER });
+        setUserDetails(userCredential.user);
+        auth.currentUser.updateProfile({ displayName: name });
+    })
+    .catch((error) => {
         let errorString = error.message;
         errorString = errorString.replace("Firebase: ", "");
         errorString = errorString.replace(/ \(auth\/.*?\)\./, "");
-        dispatch({
-            type: 'setErrorMsg',
-            value: errorString
-        })
-    })
+        dispatch({ type: userTypes.REGISTER_ERROR, payload: { message: errorString } });
+    });
 };
 
-export const signInWithEmailAndPassword = async (email, password, dispatch, navigate) => {
-    await auth.signInWithEmailAndPassword(email, password).then(() => {
-        dispatch({
-            type: 'setSuccessMsg',
-            value: 'Login succesful. You will now automatically get redirected to Home'
-        })
-
-        setTimeout(() => {
-            // setSuccessMsg('');
-            dispatch({
-                type: 'setErrorMsg',
-                value: ''
-            })
-            dispatch({
-                type: 'setEmail',
-                value: ''
-            })
-            dispatch({
-                type: 'setPassword',
-                value: ''
-            })
-            dispatch({
-                type: 'setSuccessMsg',
-                value: ''
-            })
-            navigate('/');
-        }, 600)
-        }).catch((error) => {
-            // setErrorMsg(error.message)
-            let errorString = error.message;
-            errorString = errorString.replace("Firebase: ", "");
-            errorString = errorString.replace(/ \(auth\/.*?\)\./, "");
-
-            dispatch({
-                type: 'setErrorMsg',
-                value: errorString
-            })
-        })
+export const signInWithEmailAndPassword = async (email, password, dispatch) => {
+    const setUserDetails = (user) => {
+        const { displayName, email } = user;
+        dispatch({ type: userTypes.SET_USER_DETAILS, payload: { name: displayName, email } });
+    };
+    await auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+        dispatch({ type: userTypes.LOGIN });
+        setUserDetails(userCredential.user);
+    })
+    .catch((error) => {
+        let errorString = error.message;
+        errorString = errorString.replace("Firebase: ", "");
+        errorString = errorString.replace(/ \(auth\/.*?\)\./, "");
+        dispatch({ type: userTypes.LOGIN_ERROR, payload: errorString });
+    });
 };
 
-export const signOutWithEmailAndPassword = async (navigate) => {
-    await auth.signOut().then(() => {
-        navigate('/login');
-    })
+export const signOutWithEmailAndPassword = async (dispatch) => {
+    auth.signOut().then(() => {
+            dispatch({ type: userTypes.LOGOUT });
+        });
 };
 
