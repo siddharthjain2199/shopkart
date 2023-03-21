@@ -11,10 +11,6 @@ import { userReducer, initialState } from '../../data/reducers/userReducer';
 
 
 function Navbar({ user }) {
-    // const navigate = useNavigate();
-    // const handleLogout = async () => {
-    //    await signOutWithEmailAndPassword(navigate);
-    // }
 
     const [state, dispatch] = useReducer(userReducer, initialState);
 
