@@ -7,7 +7,7 @@ Welcome to [Shopkart](https://zingy-toffee-20ab2c.netlify.app/)! This is a regul
 Here are some screenshots of the website:
 | Home | Product | Cart |
 | -------- | :------: | -------- |
-|<img src="https://i.ibb.co/chqyjG5/netlify-app.jpg" alt="Homepage" width="400"/> | <img src="https://ibb.co/gRsyCXV" alt="Product" width="400"/> |<img src="https://ibb.co/JK5wSC0" alt="Cart" width="400"/> |
+|<img src="https://i.ibb.co/chqyjG5/netlify-app.jpg" alt="Homepage" width="400"/> | <img src="[https://ibb.co/gRsyCXV](https://ibb.co/gRsyCXV"><img src="https://i.ibb.co/FDG6tfV/Products.jpg)" alt="Product" width="400"/> |<img src="[https://ibb.co/JK5wSC0](https://ibb.co/JK5wSC0"><img src="https://i.ibb.co/TkmxNrp/Cart.jpg)" alt="Cart" width="400"/> |
 
 ## Features
 
