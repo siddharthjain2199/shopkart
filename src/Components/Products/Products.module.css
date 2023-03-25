@@ -1,0 +1,118 @@
+  /* filter */
+  .filter_products_main_box{
+    width: 100%;
+    display: flex;  
+  }
+  
+  @media(max-width: 540px){
+    .filter_products_main_box{
+      flex-direction: column;
+    }
+  }
+  
+  .filter_products_main_box .my-products{
+    flex: 3.3;
+    /* border: 1px solid green; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+  }
+  
+  @media(max-width: 540px){
+    .filter_products_main_box .my-products{
+      width: 100%;
+      margin-top: 30px; 
+    }
+  }
+  
+  .filter_box{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    flex: 0.7;
+    padding-left: 15px;
+    padding-top: 10px;
+  }
+  
+  @media(max-width: 540px){
+    .filter_box{
+      width: 100%;
+      padding-left: 10px;
+      padding-top: 5px;
+    }
+  }
+  
+  .filter_box h6{
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .filter_box span{
+    cursor: pointer;
+    margin: 15px 0px;
+    font-size: 14px;
+  }
+  
+  .filter_box span.ElectronicDevices{
+    color: #e00a02;
+  }
+  
+  .filter_box span.MobileAccessories{
+    color: #e00a02;
+  }
+  
+  .filter_box span.TVAndHomeAppliances{
+    color: #e00a02;
+  }
+  
+  .filter_box span.SportsAndOutdoors{
+    color: #e00a02;
+  }
+  
+  .HealthAndBeauty,.HomeAndLifestyle,.MensFashion,.WatchesBagsAndJewellery,.Groceries{
+    color: #e00a02;
+  }
+
+  
+  .custom_card {
+    width: 250px;
+    /* height: 375px; */
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .card_image {
+    height: 200px;
+  }
+  
+  .card_title {
+    font-size: 12px;
+  }
+  
+  .card_text {
+    font-size: 13px;
+  }
+  
+  .card_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .price {
+    font-size: 16px;
+  }
+  
+  .add_to_cart_btn {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+  
+  
+  .custom_card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  

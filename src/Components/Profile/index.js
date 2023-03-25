@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { AuthContext } from '../../Context/userContext';
 
 export const Profile = ({ user }) => {
     const { t } = useTranslation();

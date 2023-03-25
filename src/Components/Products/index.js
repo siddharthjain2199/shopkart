@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth, fs } from '../../Config/Config';
 import ShowProduct from '../Products/ShowProduct'
 import { IndividualFilteredProduct } from './IndividualFilteredProduct';
+import styles from './Products.module.css';
 
 export const Products = () => {
 
@@ -106,23 +107,9 @@ export const Products = () => {
   }
   return (
     <div>
-      {/* <Products/> */}
-      {/* {products.length > 0 && (
-      <div className="container">
-        <h1 className='text-center'>Products</h1>
-        <hr></hr>
-        <div className="row">
-          <ShowProduct products={products} addToCart={addToCart} />
-        </div>
-      </div>
-    )}
-    {products.length < 1 && (
-      <div className="container">
-        Please Wait....
-      </div>
-    )} */}
-      <div className="container filter-products-main-box">
-        <div className="filter-box">
+      <div className={`container ${styles.filter_products_main_box}`}>
+        <div className="col-md-2 col-lg-2">
+        <div className={styles.filter_box}>
           <h6>Filter by category</h6>
           {spans.map((individualSpan, index) => (
             <span key={index} id={individualSpan.id}
@@ -130,8 +117,10 @@ export const Products = () => {
               className={individualSpan.id === active ? active : 'deactive'}>{individualSpan.text}</span>
           ))}
         </div>
+        </div>
+        <div className="col-md-10 col-lg-10">
         {filteredProducts.length > 0 && (
-          <div className='my-products'>
+          <div className={styles.my_products}>
             <h1 className='text-center'>{category}</h1>
             <button className="btn btn-link" onClick={returntoAllProducts}>Return to All Products</button>
             <div className='products-box'>
@@ -146,7 +135,7 @@ export const Products = () => {
         {filteredProducts.length < 1 && (
           <>
             {products.length > 0 && (
-              <div className='my-products'>
+              <div className='my_products'>
                 <h1 className='text-center'>All Products</h1>
                 <div className='products-box'>
                   <ShowProduct products={products} addToCart={addToCart} />
@@ -154,10 +143,11 @@ export const Products = () => {
               </div>
             )}
             {products.length < 1 && (
-              <div className='my-products please-wait'>Please wait...</div>
+              <div className='my_products please-wait'>Please wait...</div>
             )}
           </>
         )}
+        </div>
       </div>
 
     </div>

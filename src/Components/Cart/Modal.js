@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import moment from "moment";
 import { v4 as uuid } from 'uuid';
+import styles from './Modal.module.css'
 
 toast.configure();
 export const Modal = ({ TotalPrice, totalQty, hideModal }) => {
@@ -70,8 +71,8 @@ export const Modal = ({ TotalPrice, totalQty, hideModal }) => {
 
     return (
         <>
-            <div className='shade-area'>
-                <div className='modal-container'>
+            <div className={styles.shade_area}>
+                <div className={styles.modal_container}>
                     <form className='form-group' onSubmit={handleCashOnDelivery}>
                         <input type="number" className='form-control' placeholder='Cell No'
                             required onChange={(e) => setCell(e.target.value)} value={cell}
@@ -94,7 +95,7 @@ export const Modal = ({ TotalPrice, totalQty, hideModal }) => {
                         <br></br>
                         <button type='submit' className='btn btn-success btn-md'>Submit</button>
                     </form>
-                    <div className='delete-icon' onClick={handleCloseModal}>x</div>
+                    <div className={styles.delete_icon} onClick={handleCloseModal}>x</div>
                 </div>
             </div>
         </>
