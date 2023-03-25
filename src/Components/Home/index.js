@@ -3,6 +3,7 @@ import { CarouselImages } from '../CarouselImage';
 import { Products } from '../Products';
 
 const Home = (props) => {
+  
   return (
     <>
       <CarouselImages />
