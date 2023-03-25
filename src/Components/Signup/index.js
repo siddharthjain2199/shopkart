@@ -1,98 +1,70 @@
-import React, { useReducer } from 'react' //useState also 
 import { Link, useNavigate } from 'react-router-dom'
+import { useState, useReducer, useContext } from 'react';
+import { userReducer, initialState } from '../../data/reducers/userReducer';
 import { signUpWithEmailAndPassword } from '../../Libs/firebaseutils';
+import { AuthContext } from '../../Context/userContext';
 
 function Signup() {
 
     const navigate = useNavigate();
+    const [registerInput, setRegisterInput] = useState({ name: '', email: '', password: '' });
+    const [state, dispatch] = useReducer(userReducer, initialState);
 
-    const [state, dispatch] = useReducer(reducer, { uname: '', email: '', password: '', errorMsg: '', successMsg: '' })
-
-    function reducer(state, action) {
-        switch (action.type) {
-            case 'setUname':
-                return { ...state, uname: action.value };
-            case 'setEmail':
-                return { ...state, email: action.value };
-            case 'setPassword':
-                return { ...state, password: action.value };
-            case 'setErrorMsg':
-                return { ...state, errorMsg: action.value };
-            case 'setSuccessMsg':
-                return { ...state, successMsg: action.value };
-            default:
-                return state;
-        }
-    }
-    const handleSignup = async (e) => {
+    const handleSignup = (e) => {
         e.preventDefault();
-        //   console.log(uname,email,password);
-            try {
-                await signUpWithEmailAndPassword(state.uname, state.email, state.password, dispatch, navigate)
-            } catch (error) {
-                alert(error);
-            }
-    }
-    // return <Redirect to="/dashboard" />;
+         signUpWithEmailAndPassword(registerInput.name,registerInput.email,registerInput.password,dispatch)
+    };
+    const { currentUser } = useContext(AuthContext);
     return (
-        <>
-            {state.errorMsg && <>
+        <div>
+            {state.error && <>
                 <div className='alert alert-danger alert-dismissible fade show'>
-                    {state.errorMsg}
+                    {state.error}
                 </div>
                 <br></br>
             </>}
-            {state.successMsg && <>
-                <div className='alert alert-success alert-dismissible fade show'>{state.successMsg}
-                </div>
-                <br></br>
-            </>}
-            <div className="container">
-                <div className="mt-5">
-                    <h1>Signup</h1>
+            {currentUser ? (
+                navigate('/')
+            ) : (
+                <div className="container">
+                    <h3>Signup</h3>
+                    <hr />
                     <form onSubmit={handleSignup}>
-                        <div className="mb-3">
-                            <label htmlFor="uname" className="form-label">Name</label>
-                            <input type="text" className="form-control" id="uname" placeholder="name"
-                                onChange={
-                                    (e) => // setUname(e.target.value)
-                                        dispatch({
-                                            type: 'setUname',
-                                            value: e.target.value
-                                        })
-                                } />
+                        <div className="form-group row ">
+                            <label className="col-sm-2 col-form-label">
+                                Name:
+                            </label>
+                            <div className='col-sm-5'>
+                                <input type="text" className='form-control' value={registerInput.name} onChange={(e) => setRegisterInput({ ...registerInput, name: e.target.value })} />
+                            </div>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email address</label>
-                            <input type="email" className="form-control" id="email" placeholder="name@example.com"
-                                onChange={(e) => // setEmail(e.target.value)
-                                    dispatch({
-                                        type: 'setEmail',
-                                        value: e.target.value
-                                    })
-                                } />
+                        <div className="form-group row mt-3">
+                            <label className="col-sm-2 col-form-label">
+                                Email:
+                            </label>
+                            <div className='col-sm-5'>
+                                <input type="email" className='form-control' value={registerInput.email} onChange={(e) => setRegisterInput({ ...registerInput, email: e.target.value })} />
+                            </div>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="password" className="form-label">Password</label>
-                            <input type="password" className="form-control" id="password" placeholder="12345678"
-                                onChange={(e) => // setPassword(e.target.value)
-                                    dispatch({
-                                        type: 'setPassword',
-                                        value: e.target.value
-                                    })
-                                } />
+                        <div className="form-group row mt-3">
+                            <label className="col-sm-2 col-form-label">
+                                Password:
+                            </label>
+                            <div className='col-sm-5'>
+                                <input type="password" className='form-control' value={registerInput.password} onChange={(e) => setRegisterInput({ ...registerInput, password: e.target.value })} />
+                            </div>
                         </div>
-                        <div className="mb-3">
-                            <span>Already have an account Login&nbsp;
-                                <Link to='/login'>Here</Link></span>
-                        </div>
-                        <div className="mb-3">
-                            <button type="submit" className="btn btn-primary">SignUp</button>
+                        <div className="form-group mt-3">
+                            <button className='btn btn-warning' type="submit">Signup</button>
                         </div>
                     </form>
-                </div>
-            </div>
-        </>
+                    <div>
+                        Already have an account
+                        <Link className='btn btn-link' to='/login'>Login</Link>
+                    </div>
+                </div >
+            )}
+        </div >
     )
 }
 

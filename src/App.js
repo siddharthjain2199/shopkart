@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -17,6 +17,7 @@ import { Profile } from './Components/Profile';
 import { MyOrders } from './Components/MyOrders';
 import AboutUs from './Components/AboutUs';
 import { Products } from './Components/Products';
+import { AuthProvider } from './Context/userContext';
 
 const App = () => {
   // getting current user function
@@ -40,7 +41,8 @@ const App = () => {
 
   return (
     <div className="container">
-        <Router>
+      <BrowserRouter>
+        <AuthProvider>
           <Navbar user={user} />
           <Routes>
             <Route exact path="/" element={<Home />} />
@@ -55,7 +57,8 @@ const App = () => {
             <Route exact path="/add-product" element={<AddProduct />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Router>
+        </AuthProvider>
+      </BrowserRouter>
     </div>
   );
 }
