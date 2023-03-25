@@ -1,21 +1,21 @@
 import { auth, fs } from '../Config/Config';
 import userTypes from '../data/types/userTypes';
 
-export const signUpWithEmailAndPassword = async (name, email, password, dispatch) => {
-    const setUserDetails = (user) => {
+export const signUpWithEmailAndPassword = async (displayName, email, password, dispatch) => {
+    const createUser = (user) => {
         const { displayName, email } = user;
-        dispatch({ type: userTypes.SET_USER_DETAILS, payload: { name: displayName, email } });
+        dispatch({ type: userTypes.SET_USER, payload: { displayName: displayName, email } });
     };
    await auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
         fs.collection('users').doc(userCredential.user.uid).set({
-            UserName: name,
+            UserName: displayName,
             Email: email,
             Password: password
         })
         dispatch({ type: userTypes.REGISTER });
-        setUserDetails(userCredential.user);
-        auth.currentUser.updateProfile({ displayName: name });
+        createUser(userCredential.user);
+        auth.currentUser.updateProfile({ displayName: displayName });
     })
     .catch((error) => {
         let errorString = error.message;
@@ -26,14 +26,14 @@ export const signUpWithEmailAndPassword = async (name, email, password, dispatch
 };
 
 export const signInWithEmailAndPassword = async (email, password, dispatch) => {
-    const setUserDetails = (user) => {
+    const retrieveUser = (user) => {
         const { displayName, email } = user;
-        dispatch({ type: userTypes.SET_USER_DETAILS, payload: { name: displayName, email } });
+        dispatch({ type: userTypes.SET_USER, payload: { displayName: displayName, email } });
     };
     await auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
         dispatch({ type: userTypes.LOGIN });
-        setUserDetails(userCredential.user);
+        retrieveUser(userCredential.user);
     })
     .catch((error) => {
         let errorString = error.message;

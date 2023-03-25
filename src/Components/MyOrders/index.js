@@ -27,15 +27,15 @@ export const MyOrders = () => {
     return (
         <>
             {myOrderProducts.length > 0 &&
-                <div>
-                    <h3>MyOrders</h3>
-                    <table className="table">
+                <div className='container'>
+                    <h3 className='text-center'>MyOrders</h3>
+                    <table className="table mt-1">
                         <thead>
                             <tr>
                                 <th className="col-1">Order Id</th>
                                 <th className="col-3">Product</th>
-                                <th className="col-2">Quantity</th>
-                                <th className="col">Date</th>
+                                <th className="col-2">Total Quantity</th>
+                                <th className="col">Order Date</th>
                                 <th className="col-2">Payment Mode</th>
                                 <th className="col-2">Total Amount</th>
 

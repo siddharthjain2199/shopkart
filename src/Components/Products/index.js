@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { auth, fs } from '../../Config/Config';
+import { Loading } from '../Loading';
 import ShowProduct from '../Products/ShowProduct'
 import { IndividualFilteredProduct } from './IndividualFilteredProduct';
 import styles from './Products.module.css';
@@ -106,8 +107,7 @@ export const Products = () => {
     setFilteredProducts([]);
   }
   return (
-    <div>
-      <div className={`container ${styles.filter_products_main_box}`}>
+      <div className={`${styles.filter_products_main_box}`}>
         <div className="col-md-2 col-lg-2">
         <div className={styles.filter_box}>
           <h6>Filter by category</h6>
@@ -143,13 +143,13 @@ export const Products = () => {
               </div>
             )}
             {products.length < 1 && (
-              <div className='my_products please-wait'>Please wait...</div>
+              // <div className='my_products please-wait'>Please wait...</div>
+                <Loading/>
             )}
           </>
         )}
         </div>
       </div>
 
-    </div>
   )
 }
