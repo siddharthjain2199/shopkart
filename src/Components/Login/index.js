@@ -11,7 +11,7 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(loginInput.email,loginInput.password,dispatch)
+        signInWithEmailAndPassword(loginInput.email, loginInput.password, dispatch)
     };
 
     const handleEmail = (e) => setLoginInput({ ...loginInput, email: e.target.value })
@@ -27,8 +27,11 @@ const Login = () => {
                 <br></br>
             </>}
             {currentUser ? (
-                <Navigate to="/" />
+                <>
+                    <Navigate to="/" />
+                </>
             ) : (
+                <>
                 <div className="container">
                     <h3>Login</h3>
                     <hr />
@@ -58,6 +61,8 @@ const Login = () => {
                         <Link className='btn btn-link' to='/signup'>Signup</Link>
                     </div>
                 </div >
+                </>
+
             )}
         </div >
     );

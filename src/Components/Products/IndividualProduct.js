@@ -14,7 +14,7 @@ const IndividualProduct = ({ individualProduct, addToCart }) => {
     const text = individualProduct.productDetail;
     return (
         <>
-            <Col md={3}>
+            <Col md={5} sm={9} lg={4}>
                 <Card className={styles.custom_card}>
                     <Card.Img variant="top" src={individualProduct.url} alt={individualProduct.productName} className={styles.card_image} />
                     <Card.Body className="d-flex flex-column">

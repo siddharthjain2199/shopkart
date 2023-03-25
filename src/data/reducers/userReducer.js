@@ -3,21 +3,25 @@
 import userTypes from "../types/userTypes";
 
 const initialState = {
-  user: null,
+  user: {
+    displayName:"",
+    email:"",
+    password:""
+  },
   isAuthenticated: false,
   error: null // new field to track authentication errors
 };
 
 const userReducer = (state, action) => {
   switch (action.type) {
-    case userTypes.SET_USER_DETAILS:
-      return { ...state, userDetails: action.payload };
+    case userTypes.SET_USER:
+      return { ...state, user: action.payload };
     case userTypes.SET_NAME:
-      return { ...state, userDetails: { ...state.userDetails, name: action.payload } };
+      return { ...state, user: { ...state.user, displayName: action.payload } };
     case userTypes.SET_EMAIL:
-      return { ...state, userDetails: { ...state.userDetails, email: action.payload } };
+      return { ...state, user: { ...state.user, email: action.payload } };
     case userTypes.SET_PASSWORD:
-      return { ...state, userDetails: { ...state.userDetails, password: action.payload } };
+      return { ...state, userDetails: { ...state.user, password: action.payload } };
     case userTypes.LOGIN:
       return { ...state, isAuthenticated: true, error: null };
     case userTypes.LOGIN_ERROR:
