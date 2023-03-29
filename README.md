@@ -1,6 +1,6 @@
 # Shopkart
 
-Welcome to [Shopkart](https://zingy-toffee-20ab2c.netlify.app/)! This is a regular shopping website that sells a variety of products.
+Welcome to [Shopkart](https://shopkart.netlify.app)! This is a regular shopping website that sells a variety of products.
 
 ## Screenshots
 
@@ -23,4 +23,4 @@ Shopkart includes the following features:
 
 ## How to Use
 
-To use Shopkart, simply visit the website at [shopkart](https://zingy-toffee-20ab2c.netlify.app/) and browse the products. To purchase items, add them to your cart and checkout. If you have any questions or concerns, use the contact form to get in touch with us.
+To use Shopkart, simply visit the website at [shopkart](https://shopkart.netlify.app) and browse the products. To purchase items, add them to your cart and checkout. If you have any questions or concerns, use the contact form to get in touch with us.
